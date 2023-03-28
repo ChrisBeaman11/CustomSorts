@@ -18,24 +18,28 @@ function oddEvenSort(arr) {
   })
 }
 function validAnagrams(s, t) {
-  s = s.split("");
-  t = t.split("");
-  let sret;
-  let tret;
-  sret = s.sort((a,b) => parseInt(a) - parseInt(b));
-  tret = t.sort((a,b) => parseInt(a) - parseInt(b));
-  sret = sret.join("");
-  tret = tret.join("");
-  console.log(sret, tret);
-  return sret === tret;
+  return s.split("").sort().join("")===t.split("").sort().join("")
 }
 
 function reverseBaseSort(arr) {
   // Your code here
+  return arr.sort((a,b)=> {
+    if (a.toString().length == b.toString().length) return a - b
+    return b.toString().length - a.toString().length
+  })
 }
 
 function frequencySort(arr) {
-  // Your code here
+  let count = {}
+  arr.forEach(item=>{
+    if (!count[item]) count[item]=0
+    count[item]++
+  })
+  //console.log(count)
+  return arr.sort((a,b)=> {
+    if (count[a] != count[b]) return count[a]-count[b]
+    return b-a
+  })
 }
 
 module.exports = [
